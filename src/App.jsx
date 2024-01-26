@@ -6,18 +6,35 @@ function App() {
   const [transaction, setTransaction] = useState({
     value: "",
     type: "deposit",
+    id: "",
   });
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     setAllTransactions((prev) => [...prev, transaction]);
-    console.log(transaction);
-    setTransaction({ value: "", type: "deposit" });
+    setTransaction({ ...transaction, value: "" });
   };
 
   const addNewTransaction = (ev) => {
-    setTransaction({ ...transaction, [ev.target.name]: ev.target.value });
+    setTransaction({
+      ...transaction,
+      [ev.target.name]: ev.target.value,
+      id:
+        allTransactions.length === 0
+          ? 1
+          : allTransactions[allTransactions.length - 1].id + 1,
+    });
   };
+
+  const totalBalance =
+    allTransactions.length >= 1
+      ? allTransactions.reduce((total, current) => {
+          if (current.type === "deposit") {
+            return (total += +current.value);
+          }
+          return (total -= +current.value);
+        }, 0)
+      : 0;
 
   console.log(allTransactions);
 
@@ -41,7 +58,7 @@ function App() {
           onChange={addNewTransaction}
         >
           <option value="deposit">Depositar</option>
-          <option value="remove">Retirar</option>
+          <option value="remove">Sacar</option>
         </select>
 
         <button type="submit">Adicionar</button>
@@ -50,15 +67,18 @@ function App() {
       <section className="transactions">
         {allTransactions.length > 0 ? (
           allTransactions.map((el) => (
-            <div className="transaction" key={Math.floor(Math.random() * 100)}>
-              <p>Valor: {el.value}</p>
-              <p>Tipo: {el.type}</p>
+            <div className="transaction" key={el.id}>
+              <p>Valor: R$ {el.value}</p>
+              <p>Tipo: {el.type === "deposit" ? "Depósito" : "Saque"}</p>
+              <button>Atualizar</button>
+              <button>Deletar</button>
             </div>
           ))
         ) : (
           <p>Sem transações feitas</p>
         )}
       </section>
+      <h2>Saldo atual: R$ {totalBalance}</h2>
     </>
   );
 }
