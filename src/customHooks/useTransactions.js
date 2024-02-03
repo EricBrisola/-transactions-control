@@ -65,6 +65,7 @@ export const useTransactions = () => {
     deleteTransaction,
     totalBalance,
     allTransactions,
+    setAllTransactions,
     transaction,
   };
 };

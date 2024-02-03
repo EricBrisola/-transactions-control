@@ -13,6 +13,7 @@ function App() {
     totalBalance,
     allTransactions,
     transaction,
+    setAllTransactions,
   } = useTransactions();
 
   console.log(allTransactions);
@@ -32,6 +33,7 @@ function App() {
     ev.preventDefault();
     sendUpdatedtransaction(transactionToUpdate.id, transactionToUpdate);
     controlModal();
+    setAllTransactions(insertTransactionUpdated(transactionToUpdate));
   };
 
   const sendUpdatedtransaction = async (id, updatedTransaction) => {
@@ -55,11 +57,17 @@ function App() {
     });
   };
 
-  const transactionToUpdateFiltered = (id) => {
-    return allTransactions.filter((transaction) => transaction.id !== id);
+  const insertTransactionUpdated = (transactionToUpdate) => {
+    const newTransactionList = allTransactions.map((transaction) => {
+      if (transaction.id !== transactionToUpdate.id) return transaction;
+
+      return transactionToUpdate;
+    });
+
+    return newTransactionList;
   };
-  console.log(transactionToUpdate);
-  console.log(allTransactions);
+  // console.log(transactionToUpdate);
+  // console.log(allTransactions);
 
   return (
     <>

@@ -6,14 +6,9 @@
       "type": "deposit"
     },
     {
-      "id": "68988",
-      "value": "5400",
-      "type": "deposit"
-    },
-    {
-      "id": "94358",
-      "value": "50",
-      "type": "deposit"
+      "value": "100",
+      "type": "deposit",
+      "id": "17428"
     }
   ]
 }
