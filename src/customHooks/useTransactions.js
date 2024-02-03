@@ -11,7 +11,7 @@ export const useTransactions = () => {
   useEffect(() => {
     fetch("http://localhost:3000/transactions")
       .then((resp) => resp.json())
-      .then((json) => setAllTransactions(json));
+      .then((data) => setAllTransactions(data));
   }, []);
 
   const handleSubmit = (ev) => {
@@ -21,14 +21,14 @@ export const useTransactions = () => {
     setTransaction({ ...transaction, value: "", type: "deposit" });
   };
 
-  const addNewTransaction = (ev) => {
+  const createNewTransaction = (ev) => {
     setTransaction({
       ...transaction,
       [ev.target.name]: ev.target.value,
       id: "" + Math.floor(Math.random() * 100000),
     });
   };
-
+  //TODO: colocar try/catch em todas requisições
   const postToTransactions = async (transaction) => {
     await fetch("http://localhost:3000/transactions", {
       method: "POST",
@@ -61,7 +61,7 @@ export const useTransactions = () => {
 
   return {
     handleSubmit,
-    addNewTransaction,
+    createNewTransaction,
     deleteTransaction,
     totalBalance,
     allTransactions,
