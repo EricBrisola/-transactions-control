@@ -1,5 +1,6 @@
 import "./App.css";
 import { useTransactions } from "./customHooks/useTransactions";
+import { useModal } from "./customHooks/useModal";
 import Transaction from "./components/Transaction";
 import TransactionForm from "./components/TransactionForm";
 import Modal from "./components/Modal";
@@ -13,27 +14,21 @@ function App() {
     totalBalance,
     allTransactions,
     transaction,
-    setAllTransactions,
+    getTransactions,
   } = useTransactions();
 
-  console.log(allTransactions);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [transactionToUpdate, setTransactionToUpdate] = useState({
     value: "",
     type: "",
     id: "",
   });
 
-  const controlModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
   const handleUpdateSubmit = (ev) => {
     ev.preventDefault();
     sendUpdatedtransaction(transactionToUpdate.id, transactionToUpdate);
-    controlModal();
-    setAllTransactions(insertTransactionUpdated(transactionToUpdate));
+    closeModal();
   };
 
   const sendUpdatedtransaction = async (id, updatedTransaction) => {
@@ -44,6 +39,7 @@ function App() {
       },
       body: JSON.stringify(updatedTransaction),
     });
+    getTransactions();
   };
 
   const getCurrentTransaction = (currentTransaction) => {
@@ -56,18 +52,6 @@ function App() {
       [ev.target.name]: ev.target.value,
     });
   };
-
-  const insertTransactionUpdated = (transactionToUpdate) => {
-    const newTransactionList = allTransactions.map((transaction) => {
-      if (transaction.id !== transactionToUpdate.id) return transaction;
-
-      return transactionToUpdate;
-    });
-
-    return newTransactionList;
-  };
-  // console.log(transactionToUpdate);
-  // console.log(allTransactions);
 
   return (
     <>
@@ -93,7 +77,7 @@ function App() {
               onClick={() => deleteTransaction(el.id)}
               key={el.id}
               OpenModal={() => {
-                controlModal();
+                openModal();
                 getCurrentTransaction(el);
               }}
             />
@@ -104,7 +88,7 @@ function App() {
       </section>
       <h2>Saldo atual: R$ {totalBalance}</h2>
       {isModalOpen && (
-        <Modal closeModal={controlModal}>
+        <Modal controlModal={closeModal}>
           <TransactionForm
             method={"put"}
             onSubmit={handleUpdateSubmit}

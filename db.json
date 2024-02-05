@@ -1,14 +1,9 @@
 {
   "transactions": [
     {
-      "id": "79982",
-      "value": "1500",
+      "id": "17082",
+      "value": "2000",
       "type": "deposit"
-    },
-    {
-      "value": "100",
-      "type": "deposit",
-      "id": "17428"
     }
   ]
 }

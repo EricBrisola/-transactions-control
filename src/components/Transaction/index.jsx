@@ -4,7 +4,7 @@ function Transaction({ value, type, onClick, OpenModal }) {
     <div className="transaction">
       <p>Valor: R$ {value}</p>
       <p>Tipo: {type === "deposit" ? "Depósito" : "Saque"}</p>
-      <button onClick={OpenModal}>Atualizar</button>
+      <button onClick={OpenModal}>Alterar</button>
       <button onClick={onClick}>Deletar</button>
     </div>
   );
