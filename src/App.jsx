@@ -32,14 +32,18 @@ function App() {
   };
 
   const sendUpdatedtransaction = async (id, updatedTransaction) => {
-    await fetch(`http://localhost:3000/transactions/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedTransaction),
-    });
-    getTransactions();
+    try {
+      await fetch(`http://localhost:3000/transactions/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedTransaction),
+      });
+      getTransactions();
+    } catch (error) {
+      console.log(`não foi possível alterar a transação, erro: ${error}`);
+    }
   };
 
   const getCurrentTransaction = (currentTransaction) => {
