@@ -3,20 +3,28 @@ import { useEffect, useState } from "react";
 export const useTransactions = () => {
   const [allTransactions, setAllTransactions] = useState([]);
   const [transaction, setTransaction] = useState({
+    id: "",
     value: "",
     type: "deposit",
-    id: "",
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/transactions")
-      .then((resp) => resp.json())
-      .then((data) => setAllTransactions(data));
+    getTransactions();
   }, []);
+
+  const getTransactions = async () => {
+    try {
+      fetch("http://localhost:3000/transactions")
+        .then((resp) => resp.json())
+        .then((data) => setAllTransactions(data));
+    } catch (error) {
+      console.log(`Não foi possível fazer a requisição: ${error}`);
+    }
+  };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    setAllTransactions((prev) => [...prev, transaction]);
+    // setAllTransactions((prev) => [...prev, transaction]);
     postToTransactions(transaction);
     setTransaction({ ...transaction, value: "", type: "deposit" });
   };
@@ -24,29 +32,39 @@ export const useTransactions = () => {
   const createNewTransaction = (ev) => {
     setTransaction({
       ...transaction,
-      [ev.target.name]: ev.target.value,
       id: "" + Math.floor(Math.random() * 100000),
+      [ev.target.name]: ev.target.value,
     });
   };
-  //TODO: colocar try/catch em todas requisições
+
   const postToTransactions = async (transaction) => {
-    await fetch("http://localhost:3000/transactions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(transaction),
-    });
+    try {
+      await fetch("http://localhost:3000/transactions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(transaction),
+      });
+      getTransactions();
+    } catch (error) {
+      console.log(`Não foi possível fazer a requisição: ${error}`);
+    }
   };
 
   async function deleteTransaction(id) {
-    await fetch(`http://localhost:3000/transactions/${id}`, {
-      method: "DELETE",
-    });
+    try {
+      await fetch(`http://localhost:3000/transactions/${id}`, {
+        method: "DELETE",
+      });
+      getTransactions();
+    } catch (error) {
+      console.log(`Não foi possível fazer a requisição: ${error}`);
+    }
 
-    setAllTransactions((prev) =>
-      prev.filter((transaction) => transaction.id !== id)
-    );
+    // setAllTransactions((prev) =>
+    //   prev.filter((transaction) => transaction.id !== id)
+    // );
   }
 
   const totalBalance =
@@ -67,5 +85,6 @@ export const useTransactions = () => {
     allTransactions,
     setAllTransactions,
     transaction,
+    getTransactions,
   };
 };
