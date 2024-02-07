@@ -1,0 +1,31 @@
+.transaction {
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  width: 68rem;
+  font-weight: 600;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: #333333;
+}
+
+.transaction-values,
+.transaction-types {
+  width: 4.5rem;
+}
+
+.update-button,
+.delete-button {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.update-button:hover {
+  transition: 0.5s;
+  scale: 1.1;
+}
+.delete-button:hover {
+  transition: 0.5s;
+  scale: 1.1;
+}
