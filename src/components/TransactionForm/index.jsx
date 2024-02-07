@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import "./style.css";
 function TransactionForm({
   method,
   onSubmit,
@@ -10,7 +11,7 @@ function TransactionForm({
   btnText,
 }) {
   return (
-    <form method={method} onSubmit={onSubmit}>
+    <form method={method} onSubmit={onSubmit} className="transaction-form">
       <label htmlFor={htmlFor}>Valor: </label>
       <input
         type="number"
@@ -20,10 +21,16 @@ function TransactionForm({
         value={valueInput}
         required={true}
         min={0}
+        className="value-input"
       />
       <label>
         Tipo:
-        <select name="type" value={valueSelect} onChange={onChange}>
+        <select
+          name="type"
+          value={valueSelect}
+          onChange={onChange}
+          className="select-input"
+        >
           <option value="deposit">Depositar</option>
           <option value="remove">Sacar</option>
         </select>

@@ -58,7 +58,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="App">
       <h2>Controle de transações</h2>
 
       <TransactionForm
@@ -73,6 +73,20 @@ function App() {
       />
 
       <section className="transactions">
+        <article className="transactions-header">
+          <p className="header-titles" id="value-header">
+            Valor
+          </p>
+          <p className="header-titles" id="type-header">
+            Tipo
+          </p>
+          <p className="header-titles" id="edit-header">
+            Alterar
+          </p>
+          <p className="header-titles" id="delete-header">
+            Deletar
+          </p>
+        </article>
         {allTransactions.length > 0 ? (
           allTransactions.map((el) => (
             <Transaction
@@ -105,7 +119,7 @@ function App() {
           />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

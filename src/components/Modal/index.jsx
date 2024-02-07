@@ -4,7 +4,7 @@ function Modal({ children, controlModal }) {
   return (
     <div className="modal-container">
       <div className="modal">
-        {children}
+        <div className="modal-form">{children}</div>
         <button type="button" className="close-modal" onClick={controlModal}>
           X
         </button>
