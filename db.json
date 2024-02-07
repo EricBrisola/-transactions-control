@@ -4,6 +4,21 @@
       "id": "17082",
       "value": "2000",
       "type": "deposit"
+    },
+    {
+      "id": "95326",
+      "value": "1500",
+      "type": "deposit"
+    },
+    {
+      "id": "32514",
+      "value": "2250",
+      "type": "deposit"
+    },
+    {
+      "id": "90509",
+      "value": "400",
+      "type": "remove"
     }
   ]
 }
