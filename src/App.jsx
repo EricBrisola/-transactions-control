@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Controle de transações</h2>
+      <h2 className="app-title">Controle de transações</h2>
 
       <TransactionForm
         method={"post"}
@@ -70,6 +70,7 @@ function App() {
         onChange={createNewTransaction}
         valueSelect={transaction.type}
         btnText={"Adicionar"}
+        className={"main-form"}
       />
 
       <section className="transactions">
@@ -116,6 +117,7 @@ function App() {
             onChange={handleOnChangeUpdate}
             valueSelect={transactionToUpdate.type}
             btnText={"Confirmar"}
+            className={"modal-form"}
           />
         </Modal>
       )}

@@ -9,22 +9,26 @@ function TransactionForm({
   onChange,
   valueSelect,
   btnText,
+  className,
 }) {
   return (
-    <form method={method} onSubmit={onSubmit} className="transaction-form">
-      <label htmlFor={htmlFor}>Valor: </label>
-      <input
-        type="number"
-        name="value"
-        id={idInput}
-        onChange={onChange}
-        value={valueInput}
-        required={true}
-        min={0}
-        className="value-input"
-      />
-      <label>
-        Tipo:
+    <form method={method} onSubmit={onSubmit} className={className}>
+      <label htmlFor={htmlFor} className="value-label">
+        <p>Valor</p>
+        <input
+          type="number"
+          name="value"
+          id={idInput}
+          onChange={onChange}
+          value={valueInput}
+          required={true}
+          min={0}
+          className="value-input"
+          placeholder="1000"
+        />
+      </label>
+      <label className="select-label">
+        <p>Tipo</p>
         <select
           name="type"
           value={valueSelect}
@@ -36,7 +40,9 @@ function TransactionForm({
         </select>
       </label>
 
-      <button type="submit">{btnText}</button>
+      <button type="submit" className="submit-button">
+        {btnText}
+      </button>
     </form>
   );
 }
