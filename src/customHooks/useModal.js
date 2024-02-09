@@ -11,7 +11,6 @@ export const useModal = () => {
     setIsModalOpen(false);
   };
 
-  console.log(`valor atual do modal: ${isModalOpen}`);
   return {
     openModal,
     closeModal,

@@ -24,7 +24,6 @@ export const useTransactions = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    // setAllTransactions((prev) => [...prev, transaction]);
     postToTransactions(transaction);
     setTransaction({ ...transaction, value: "", type: "deposit" });
   };
@@ -61,20 +60,16 @@ export const useTransactions = () => {
     } catch (error) {
       console.log(`Não foi possível fazer a requisição: ${error}`);
     }
-
-    // setAllTransactions((prev) =>
-    //   prev.filter((transaction) => transaction.id !== id)
-    // );
   }
 
   const totalBalance =
     allTransactions.length >= 1
       ? allTransactions.reduce((total, current) => {
-          if (current.type === "deposit") {
-            return (total += +current.value);
-          }
-          return (total -= +current.value);
-        }, 0)
+        if (current.type === "deposit") {
+          return (total += +current.value);
+        }
+        return (total -= +current.value);
+      }, 0)
       : 0;
 
   return {
