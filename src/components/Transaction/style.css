@@ -6,7 +6,7 @@
   font-weight: 600;
   justify-content: space-around;
   align-items: center;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   background-color: #333333;
 }
 
@@ -28,4 +28,54 @@
 .delete-button:hover {
   transition: 0.5s;
   scale: 1.1;
+}
+
+/* mobile port */
+
+@media (max-width: 1024px) {
+  .transaction {
+    width: 48.55rem;
+    height: 2.142rem;
+  }
+
+  .update-button,
+  .delete-button {
+    width: 1.428rem;
+    height: 1.428rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .transaction {
+    width: 38.828rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .transaction {
+    width: 23.31rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .transaction {
+    width: 21.17rem;
+  }
+
+  .transaction-values,
+  .transaction-types {
+    width: 3rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .transaction {
+    width: 17.48rem;
+    font-size: 0.8rem;
+  }
+
+  .transaction-values,
+  .transaction-types {
+    width: 3rem;
+  }
 }

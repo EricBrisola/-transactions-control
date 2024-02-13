@@ -1,24 +1,29 @@
 {
   "transactions": [
     {
-      "id": "76526",
-      "value": "500",
+      "id": "29813",
+      "value": "250",
       "type": "deposit"
     },
     {
-      "id": "11881",
-      "value": "500",
-      "type": "deposit"
-    },
-    {
-      "id": "20841",
-      "value": "5200",
-      "type": "deposit"
-    },
-    {
-      "id": "89197",
+      "id": "31770",
       "value": "2500",
       "type": "deposit"
+    },
+    {
+      "id": "3758",
+      "value": "450",
+      "type": "remove"
+    },
+    {
+      "id": "1019",
+      "value": "250",
+      "type": "deposit"
+    },
+    {
+      "id": "1208",
+      "value": "250",
+      "type": "remove"
     }
   ]
 }
