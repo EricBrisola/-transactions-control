@@ -61,51 +61,61 @@ function App() {
     <div className="App">
       <h2 className="app-title">Controle de transações</h2>
 
-      <TransactionForm
-        method={"post"}
-        onSubmit={handleSubmit}
-        htmlFor={"transaction-value"}
-        idInput={"transaction-value"}
-        valueInput={transaction.value}
-        onChange={createNewTransaction}
-        valueSelect={transaction.type}
-        btnText={"Adicionar"}
-        className={"main-form"}
-      />
+      <div className="transaction-app">
+        <TransactionForm
+          method={"post"}
+          onSubmit={handleSubmit}
+          htmlFor={"transaction-value"}
+          idInput={"transaction-value"}
+          valueInput={transaction.value}
+          onChange={createNewTransaction}
+          valueSelect={transaction.type}
+          btnText={"Adicionar"}
+          className={"main-form"}
+        />
 
-      <section className="transactions">
-        <article className="transactions-header">
-          <p className="header-titles" id="value-header">
-            Valor
-          </p>
-          <p className="header-titles" id="type-header">
-            Tipo
-          </p>
-          <p className="header-titles" id="edit-header">
-            Alterar
-          </p>
-          <p className="header-titles" id="delete-header">
-            Deletar
-          </p>
-        </article>
-        {allTransactions.length > 0 ? (
-          allTransactions.map((el) => (
-            <Transaction
-              value={el.value}
-              type={el.type}
-              onClick={() => deleteTransaction(el.id)}
-              key={el.id}
-              OpenModal={() => {
-                openModal();
-                getCurrentTransaction(el);
-              }}
-            />
-          ))
-        ) : (
-          <p>Sem transações feitas</p>
-        )}
-      </section>
-      <h2>Saldo atual: R$ {totalBalance}</h2>
+        <section className="transactions">
+          <article className="transactions-header">
+            <p className="header-titles" id="value-header">
+              Valor
+            </p>
+            <p className="header-titles" id="type-header">
+              Tipo
+            </p>
+            <p className="header-titles" id="edit-header">
+              Alterar
+            </p>
+            <p className="header-titles" id="delete-header">
+              Deletar
+            </p>
+          </article>
+          {allTransactions.length > 0 ? (
+            allTransactions.map((el) => (
+              <Transaction
+                value={el.value}
+                type={el.type}
+                onClick={() => deleteTransaction(el.id)}
+                key={el.id}
+                OpenModal={() => {
+                  openModal();
+                  getCurrentTransaction(el);
+                }}
+              />
+            ))
+          ) : (
+            <p className="no-transactions-made">Sem transações feitas</p>
+          )}
+          <h2
+            className={
+              totalBalance >= 0 ? "positive-balance" : "negative-balance"
+            }
+          >
+            SALDO: R$
+            {totalBalance}
+          </h2>
+        </section>
+      </div>
+
       {isModalOpen && (
         <Modal controlModal={closeModal}>
           <TransactionForm
@@ -121,6 +131,7 @@ function App() {
           />
         </Modal>
       )}
+      <footer className="footer">Desenvolvido por Eric Brisola</footer>
     </div>
   );
 }
