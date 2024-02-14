@@ -53,7 +53,7 @@ export const useTransactions = () => {
 
   async function deleteTransaction(id) {
     try {
-      await fetch(`http://localhost:3000/transactions/${id}`, {
+      await fetch(`https://transactions-control-json-server.vercel.app/transactions/${id}`, {
         method: "DELETE",
       });
       getTransactions();
