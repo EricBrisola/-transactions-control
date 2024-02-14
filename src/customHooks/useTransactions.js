@@ -14,7 +14,7 @@ export const useTransactions = () => {
 
   const getTransactions = async () => {
     try {
-      fetch("http://localhost:3000/transactions")
+      fetch("https://transactions-control-json-server.vercel.app/transactions")
         .then((resp) => resp.json())
         .then((data) => setAllTransactions(data));
     } catch (error) {
