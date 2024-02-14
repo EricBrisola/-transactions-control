@@ -38,7 +38,7 @@ export const useTransactions = () => {
 
   const postToTransactions = async (transaction) => {
     try {
-      await fetch("http://localhost:3000/transactions", {
+      await fetch("https://transactions-control-json-server.vercel.app/transactions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
