@@ -33,7 +33,7 @@ function App() {
 
   const sendUpdatedtransaction = async (id, updatedTransaction) => {
     try {
-      await fetch(`http://localhost:3000/transactions/${id}`, {
+      await fetch(`https://transactions-control-json-server.vercel.app/transactions/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
