@@ -81,7 +81,7 @@ function App() {
             valueInput={transaction.value}
             onChange={createNewTransaction}
             valueSelect={transaction.type}
-            btnText={"Adicionar"}
+            btnText={transaction.type === "deposit" ? "Depositar" : "Sacar"}
             className={"main-form"}
           />
 
