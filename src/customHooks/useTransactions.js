@@ -1,6 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
+import { useLoading } from "./useLoading";
 
 export const useTransactions = () => {
+  const { isLoading, stopLoading } = useLoading();
+
   const [allTransactions, setAllTransactions] = useState([]);
   const [transaction, setTransaction] = useState({
     id: "",
@@ -16,7 +20,10 @@ export const useTransactions = () => {
     try {
       fetch("https://transactions-control-json-server.vercel.app/transactions")
         .then((resp) => resp.json())
-        .then((data) => setAllTransactions(data));
+        .then((data) => {
+          setAllTransactions(data);
+          stopLoading();
+        });
     } catch (error) {
       console.log(`Não foi possível fazer a requisição: ${error}`);
     }
@@ -38,13 +45,16 @@ export const useTransactions = () => {
 
   const postToTransactions = async (transaction) => {
     try {
-      await fetch("https://transactions-control-json-server.vercel.app/transactions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(transaction),
-      });
+      await fetch(
+        "https://transactions-control-json-server.vercel.app/transactions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(transaction),
+        }
+      );
       getTransactions();
     } catch (error) {
       console.log(`Não foi possível fazer a requisição: ${error}`);
@@ -53,9 +63,12 @@ export const useTransactions = () => {
 
   async function deleteTransaction(id) {
     try {
-      await fetch(`https://transactions-control-json-server.vercel.app/transactions/${id}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://transactions-control-json-server.vercel.app/transactions/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       getTransactions();
     } catch (error) {
       console.log(`Não foi possível fazer a requisição: ${error}`);
@@ -65,11 +78,11 @@ export const useTransactions = () => {
   const totalBalance =
     allTransactions.length >= 1
       ? allTransactions.reduce((total, current) => {
-        if (current.type === "deposit") {
-          return (total += +current.value);
-        }
-        return (total -= +current.value);
-      }, 0)
+          if (current.type === "deposit") {
+            return (total += +current.value);
+          }
+          return (total -= +current.value);
+        }, 0)
       : 0;
 
   return {
@@ -81,5 +94,6 @@ export const useTransactions = () => {
     setAllTransactions,
     transaction,
     getTransactions,
+    isLoading,
   };
 };
