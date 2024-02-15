@@ -111,6 +111,10 @@
   .negative-balance {
     font-size: 1.071rem;
   }
+
+  #edit-header {
+    width: 8.125rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -125,6 +129,11 @@
 
   .transactions-header {
     height: 1.71rem;
+  }
+
+  .loading-animation {
+    width: 10rem;
+    height: 10rem;
   }
 }
 
@@ -153,6 +162,11 @@
   #delete-header {
     padding-left: 1rem;
   }
+
+  .loading-animation {
+    width: 8rem;
+    height: 8rem;
+  }
 }
 
 @media (max-width: 375px) {
@@ -171,6 +185,11 @@
 
   #delete-header {
     padding-right: 0.2rem;
+  }
+
+  .loading-animation {
+    width: 7rem;
+    height: 7rem;
   }
 }
 
@@ -193,5 +212,10 @@
 
   #edit-header {
     padding-left: 2.5rem;
+  }
+
+  .loading-animation {
+    width: 6rem;
+    height: 6rem;
   }
 }
