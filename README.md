@@ -20,5 +20,5 @@ Este repositório contém um aplicativo de controle de transações, desenvolvid
 
 1. Clone este repositório para sua máquina local.
 2. Instale as dependências usando npm ou yarn.
-3. Execute o aplicativo usando `npm start` ou `yarn start`.
+3. Execute o aplicativo usando `npm run dev` ou `yarn start`.
 
