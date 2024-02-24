@@ -51,15 +51,18 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   .transaction {
-    width: 23.31rem;
+    width: 22.3rem;
+    justify-content: center;
+    gap: 2.5em;
   }
 }
 
 @media (max-width: 375px) {
   .transaction {
-    width: 21.17rem;
+    width: 20.39rem;
+    gap: 3rem;
   }
 
   .transaction-values,
@@ -70,8 +73,9 @@
 
 @media (max-width: 320px) {
   .transaction {
-    width: 17.48rem;
+    width: 18.1rem;
     font-size: 0.8rem;
+    gap: 2.5rem;
   }
 
   .transaction-values,
